@@ -1,29 +1,42 @@
-/*
- * Author: Meta @ vidasconcurrentes
- * Related to: http://vidasconcurrentes.blogspot.com/2011/06/detectando-drag-drop-en-un-canvas-de.html
- */
-
 package com.upv.pm_2022.iti_27856_u2_equipo_05;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
+/**
+ *
+ */
 public class DragAndDropThread extends Thread {
 
+	/**
+	 *
+	 */
 	private SurfaceHolder sh;
 	private DragAndDropView view;
 	private boolean run;
-	
+
+	/**
+	 *
+	 * @param sh
+	 * @param view
+	 */
 	public DragAndDropThread(SurfaceHolder sh, DragAndDropView view) {
 		this.sh = sh;
 		this.view = view;
 		run = false;
 	}
-	
+
+	/**
+	 *
+	 * @param run
+	 */
 	public void setRunning(boolean run) {
 		this.run = run;
 	}
-	
+
+	/**
+	 *
+	 */
 	@Override
 	public void run() {
 		Canvas canvas;
