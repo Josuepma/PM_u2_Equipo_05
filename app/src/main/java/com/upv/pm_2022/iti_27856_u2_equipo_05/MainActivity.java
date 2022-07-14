@@ -1,10 +1,14 @@
 package com.upv.pm_2022.iti_27856_u2_equipo_05;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -70,5 +74,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            case R.id.Menu_about:
+                // Show dialog say our names
+                AlertDialog.Builder ADX;
+                AlertDialog AD;
+                ADX = new AlertDialog.Builder(this);
+                AD = ADX.create();
+                AD.setMessage(
+                    "Adair Eliseo Rojas Oaxaca \n" +
+                    "Carlos Jared Ulibarri Ruiz\n" +
+                    "Hector Varela Grimaldo \n" +
+                    "Josué Eliseo Perales Meléndez Y Alcocer\n" +
+                    "Saúl Sánchez de la Fuente"
+                );
+                AD.show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
