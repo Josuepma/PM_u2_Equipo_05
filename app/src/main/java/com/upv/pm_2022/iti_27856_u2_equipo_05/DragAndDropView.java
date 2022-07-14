@@ -22,7 +22,7 @@ public class DragAndDropView extends SurfaceView implements SurfaceHolder.Callba
 	 *
 	 */
 	private DragAndDropThread thread;
-	private ArrayList<Figura> figuras;
+	public ArrayList<Figura> figuras;
 	private int figuraActiva;
 
 	/**
@@ -89,16 +89,20 @@ public class DragAndDropView extends SurfaceView implements SurfaceHolder.Callba
 	public void onDraw(Canvas canvas) {
 		Paint p = new Paint();
 		p.setAntiAlias(true);
-		
+
 		canvas.drawColor(Color.WHITE);
-		
-		Circulo c = (Circulo) figuras.get(0);
-		p.setColor(Color.BLACK);
-		canvas.drawCircle(c.getX(), c.getY(), c.getRadio(), p);
-		
-		Rectangulo r = (Rectangulo) figuras.get(1);
-		p.setColor(Color.RED);
-		canvas.drawRect(r.getX(), r.getY(), r.getX()+r.getAncho(), r.getY()+r.getAlto(), p);
+
+		for(Figura f : figuras) {
+			if (f instanceof Circulo){
+				Circulo c = (Circulo) f;
+				p.setColor(Color.BLACK);
+				canvas.drawCircle(c.getX(), c.getY(), c.getRadio(), p);
+			} else {
+				Rectangulo r = (Rectangulo) f;
+				p.setColor(Color.RED);
+				canvas.drawRect(r.getX(), r.getY(), r.getX()+r.getAncho(), r.getY()+r.getAlto(), p);
+			}
+		}
 	}
 
 	/**
