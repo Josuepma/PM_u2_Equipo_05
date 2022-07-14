@@ -1,5 +1,7 @@
 package com.upv.pm_2022.iti_27856_u2_equipo_05;
 
+import java.util.Random;
+
 /**
  *
  */
@@ -9,6 +11,8 @@ public class Circulo extends Figura {
 	 *
 	 */
 	private int radio;
+
+	private int numero;
 
 	/**
 	 *
@@ -22,6 +26,16 @@ public class Circulo extends Figura {
 		this.x = x;
 		this.y = y;
 		this.radio = radio;
+		Random r = new Random();
+		this.numero = r.nextInt(100);
+	}
+
+	public Circulo(int id, int x, int y, int radio, int numero) {
+		this.id = id;
+		this.x = x;
+		this.y = y;
+		this.radio = radio;
+		this.numero = numero;
 	}
 
 	/**
@@ -30,5 +44,9 @@ public class Circulo extends Figura {
 	 */
 	public int getRadio() {
 		return radio;
+	}
+
+	public int getNumero(){
+		return numero;
 	}
 }

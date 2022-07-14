@@ -54,8 +54,8 @@ public class DragAndDropView extends SurfaceView implements SurfaceHolder.Callba
 	public void surfaceCreated(SurfaceHolder arg0) {
 		int id = 0;
 		figuras = new ArrayList<Figura>();
-		figuras.add(new Circulo(id++,200,200,100));
-		figuras.add(new Rectangulo(id++,200,500,200,200));
+		figuras.add(new Circulo(id++,100,100,20));
+		//figuras.add(new Rectangulo(id++,200,500,200,200));
 		figuraActiva = -1;
 		
 		thread = new DragAndDropThread(getHolder(), this);
@@ -97,6 +97,8 @@ public class DragAndDropView extends SurfaceView implements SurfaceHolder.Callba
 				Circulo c = (Circulo) f;
 				p.setColor(Color.BLACK);
 				canvas.drawCircle(c.getX(), c.getY(), c.getRadio(), p);
+				p.setColor(Color.WHITE);
+				canvas.drawText(""+c.getNumero(),c.getX()-c.getRadio()/2,c.getY(),p);
 			} else {
 				Rectangulo r = (Rectangulo) f;
 				p.setColor(Color.RED);

@@ -25,27 +25,30 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
         >
 
         <Button
             android:id="@+id/add_first"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="agregar"
             />
         <Button
             android:id="@+id/add_index"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="agregar por indice"
+            android:layout_weight="1"
+            android:text="agregar indice"
             />
         <Button
             android:id="@+id/add_last"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="eliminar"
             />
 

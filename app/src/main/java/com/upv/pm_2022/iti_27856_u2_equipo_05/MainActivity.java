@@ -32,21 +32,34 @@ public class MainActivity extends AppCompatActivity {
         add_first.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                dragAndDropView.figuras.add(
+                        new Circulo(
+                                dragAndDropView.figuras.size()+1,
+                                dragAndDropView.figuras.get(dragAndDropView.figuras.size()-1).getX() + 100,
+                                dragAndDropView.figuras.get(dragAndDropView.figuras.size()-1).getY() ,
+                                20
+                        )
+                );
+                if (dragAndDropView.figuras.get(dragAndDropView.figuras.size()-1).getX() + 100 > ly.getHeight()){
+                    dragAndDropView.figuras.add(
+                        new Circulo(
+                                dragAndDropView.figuras.size()+1,
+                                 100,
+                                dragAndDropView.figuras.get(dragAndDropView.figuras.size()-1).getY() + 100,
+                                20
+                        )
+                    );
+                }
+                ly.invalidate();
             }
         });
 
         remove_last.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dragAndDropView.figuras.add(
-                        new Circulo(
-                                dragAndDropView.figuras.size()+1,
-                                dragAndDropView.figuras.get(dragAndDropView.figuras.size()-1).getX(),
-                                dragAndDropView.figuras.get(dragAndDropView.figuras.size()-1).getY(),
-                                100
-                                )
-                );
+                if (dragAndDropView.figuras.size()-1>1)
+                    dragAndDropView.figuras.remove(dragAndDropView.figuras.size()-1);
+                ly.invalidate();
             }
         });
 
