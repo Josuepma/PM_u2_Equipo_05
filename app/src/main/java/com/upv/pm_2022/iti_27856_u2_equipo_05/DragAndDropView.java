@@ -104,15 +104,15 @@ public class DragAndDropView extends SurfaceView implements SurfaceHolder.Callba
 				p.setTextSize(50);
 				canvas.drawText(""+c.getNumero(),c.getX(),c.getY(),p);
 
-				if (lastX!=-1){//fix flechas
+				if (lastX!=-1 && c.getX()!=100){
 					p.setColor(Color.BLACK);
-					canvas.drawLine(c.getX(),c.getY()-10,lastX + c.getRadio(),lastY-10,p);
-					canvas.drawLine(lastX + c.getRadio(),lastY,lastX+40 + c.getRadio(),lastY-10,p);
-					canvas.drawLine(lastX + c.getRadio(),lastY,lastX+40 + c.getRadio(),lastY+10,p);
+					canvas.drawLine(c.getX() - c.getRadio(),c.getY()-40,lastX + c.getRadio(),lastY - 40,p);//left arrow
+					canvas.drawLine(lastX + c.getRadio(),lastY - 40,lastX+40 + c.getRadio(),lastY-70,p);
+					canvas.drawLine(lastX + c.getRadio(),lastY - 40,lastX+40 + c.getRadio(),lastY-10,p);
 
-					//canvas.drawLine(c.getX(),c.getY()+10,lastX - c.getRadio(),lastY+10,p);
-					//canvas.drawLine(c.getX(),c.getY()+10,c.getX()+10 + c.getRadio(),c.getY()+20,p);
-					//canvas.drawLine(c.getX(),c.getY()+10,c.getX()+10 + c.getRadio(),c.getY()-20,p);
+					canvas.drawLine(c.getX() - c.getRadio() ,c.getY()+40,lastX + c.getRadio(),lastY+40,p);//right arrow
+					canvas.drawLine(c.getX() - c.getRadio(),c.getY()+40,c.getX() - c.getRadio() - 40,c.getY()+10,p);
+					canvas.drawLine(c.getX() - c.getRadio(),c.getY()+40,c.getX() - c.getRadio() - 40,c.getY()+70,p);
 				}
 				lastX = c.getX();lastY = c.getY();
 			} else {

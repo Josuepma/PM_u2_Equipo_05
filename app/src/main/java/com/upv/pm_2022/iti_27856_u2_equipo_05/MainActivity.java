@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                                             dragAndDropView.figuras.size()+1,
                                             100,
                                             dragAndDropView.figuras.get(numberInt - 2).getY() + 100,
-                                            ((int)radio + 100)
+                                            ((int)radio + 200)
                                     )
                             );
                         }
