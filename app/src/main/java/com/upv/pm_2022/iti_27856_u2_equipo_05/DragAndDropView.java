@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -53,8 +54,9 @@ public class DragAndDropView extends SurfaceView implements SurfaceHolder.Callba
 	@Override
 	public void surfaceCreated(SurfaceHolder arg0) {
 		int id = 0;
+
 		figuras = new ArrayList<Figura>();
-		figuras.add(new Circulo(id++,100,100,20));
+		figuras.add(new Circulo(id++,100,100,(getWidth()) / 12));
 		//figuras.add(new Rectangulo(id++,200,500,200,200));
 		figuraActiva = -1;
 		
@@ -91,6 +93,7 @@ public class DragAndDropView extends SurfaceView implements SurfaceHolder.Callba
 		p.setAntiAlias(true);
 
 		canvas.drawColor(Color.WHITE);
+		float lastX=-1, lastY=-1;
 
 		for(Figura f : figuras) {
 			if (f instanceof Circulo){
@@ -98,7 +101,20 @@ public class DragAndDropView extends SurfaceView implements SurfaceHolder.Callba
 				p.setColor(Color.BLACK);
 				canvas.drawCircle(c.getX(), c.getY(), c.getRadio(), p);
 				p.setColor(Color.WHITE);
-				canvas.drawText(""+c.getNumero(),c.getX()-c.getRadio()/2,c.getY(),p);
+				p.setTextSize(50);
+				canvas.drawText(""+c.getNumero(),c.getX(),c.getY(),p);
+
+				if (lastX!=-1){//fix flechas
+					p.setColor(Color.BLACK);
+					canvas.drawLine(c.getX(),c.getY()-10,lastX + c.getRadio(),lastY-10,p);
+					canvas.drawLine(lastX + c.getRadio(),lastY,lastX+40 + c.getRadio(),lastY-10,p);
+					canvas.drawLine(lastX + c.getRadio(),lastY,lastX+40 + c.getRadio(),lastY+10,p);
+
+					//canvas.drawLine(c.getX(),c.getY()+10,lastX - c.getRadio(),lastY+10,p);
+					//canvas.drawLine(c.getX(),c.getY()+10,c.getX()+10 + c.getRadio(),c.getY()+20,p);
+					//canvas.drawLine(c.getX(),c.getY()+10,c.getX()+10 + c.getRadio(),c.getY()-20,p);
+				}
+				lastX = c.getX();lastY = c.getY();
 			} else {
 				Rectangulo r = (Rectangulo) f;
 				p.setColor(Color.RED);
@@ -137,23 +153,9 @@ public class DragAndDropView extends SurfaceView implements SurfaceHolder.Callba
 				}
 			}
 			break;
-		case MotionEvent.ACTION_MOVE:
-			if(figuraActiva != -1) {
-				if(figuras.get(figuraActiva) instanceof Circulo) {
-					figuras.get(figuraActiva).setX(x);
-					figuras.get(figuraActiva).setY(y);
-				} else {	// in this context, only instanceof Rectangulo
-					Rectangulo r = (Rectangulo) figuras.get(figuraActiva);
-					r.setX(x - r.getAncho()/2);
-					r.setY(y - r.getAlto()/2);
-				}
-			}
-			break;
-		case MotionEvent.ACTION_UP:
-			figuraActiva = -1;
-			break;
 		}
 		
 		return true;
 	}
+
 }
